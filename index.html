@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WAR!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="table">
+        <div class="computer">
+          <div class="cards">
+            <img src="imgs/cardback.jpg" alt="draw pile" width="100%" />
+          </div>
+          <div class="cards">
+            <img
+              src="imgs/cardback.jpg"
+              alt="play area"
+              width="100%"
+              class="cpu-play"
+            />
+          </div>
+          <div class="cards">
+            <img src="imgs/cardback.jpg" alt="discard pile" width="100%" />
+          </div>
+          <p id="cpu-score"></p>
+        </div>
+
+        <div class="human">
+          <div class="draw cards">
+            <img src="imgs/cardback.jpg" alt="draw pile" width="100%" />
+          </div>
+          <div class="cards">
+            <img
+              src="imgs/cardback.jpg"
+              alt="play area"
+              width="100%"
+              class="play"
+            />
+          </div>
+          <div class="discard cards">
+            <img src="imgs/cardback.jpg" alt="discard pile" width="100%" />
+          </div>
+          <p id="player-score"></p>
+        </div>
+      </div>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
