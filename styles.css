@@ -42,6 +42,13 @@ html {
   margin: 7rem 0;
 }
 
+/* .player-win {
+  position: absolute;
+  background-color: red;
+  margin: auto;
+
+} */
+
 #player-score,
 #cpu-score {
   border: 10px red solid;

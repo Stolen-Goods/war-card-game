@@ -1,5 +1,6 @@
 "use strict";
 
+let game = true;
 let cardNumber;
 let cardSuit;
 let card;
@@ -21,6 +22,16 @@ function cardGenerator() {
   !usedCards.includes(card) ? usedCards.push(card) : cardGenerator();
 }
 
+function war() {}
+
+function gameOver() {
+  if (playerScore > cpuScore) {
+    prompt("You win!");
+  } else {
+    prompt("You lose!");
+  }
+}
+
 draw.addEventListener("click", () => {
   let playerCard;
   let cpuCard;
@@ -30,11 +41,16 @@ draw.addEventListener("click", () => {
   cardGenerator();
   cpuPlay.src = `imgs/${card}.svg`;
   cpuCard = cardNumber;
+  if (usedCards.length === 52) {
+    gameOver();
+  }
   if (playerCard > cpuCard) {
     playerScore += 2;
     playerScr.textContent = `Score: ${playerScore}`;
   } else if (cpuCard > playerCard) {
     cpuScore += 2;
     cpuScr.textContent = `Score: ${cpuScore}`;
+  } else if (playerCard === cpuCard) {
+    war();
   }
 });
