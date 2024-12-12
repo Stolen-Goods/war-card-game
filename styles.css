@@ -4,6 +4,9 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: lightblue;
+}
 /* .hidden {
   display: none;
 } */
@@ -30,11 +33,21 @@
 .computer,
 .human {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .cards {
   width: 20%;
   margin: 7rem 0;
+}
+
+#player-score,
+#cpu-score {
+  border: 10px red solid;
+  font-size: 2rem;
+  color: white;
+  background-color: black;
+  padding: 2rem;
+  border-radius: 10px;
 }

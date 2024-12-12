@@ -3,6 +3,7 @@
 let cardNumber;
 let cardSuit;
 let card;
+let newCard;
 let playerScore = 0;
 let cpuScore = 0;
 const usedCards = [];
@@ -17,7 +18,7 @@ function cardGenerator() {
   cardNumber = Math.trunc(Math.random() * 13) + 1;
   cardSuit = Math.trunc(Math.random() * 4) + 1;
   card = `${cardNumber}-${cardSuit}`;
-  usedCards.push(card);
+  !usedCards.includes(card) ? usedCards.push(card) : cardGenerator();
 }
 
 draw.addEventListener("click", () => {
