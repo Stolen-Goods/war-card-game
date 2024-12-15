@@ -14,6 +14,8 @@ const play = document.querySelector(".play");
 const cpuPlay = document.querySelector(".cpu-play");
 const playerScr = document.getElementById("player-score");
 const cpuScr = document.getElementById("cpu-score");
+const gameEnd = document.querySelector(".end-game");
+const table = document.querySelector(".table");
 
 function cardGenerator() {
   cardNumber = Math.trunc(Math.random() * 13) + 1;
@@ -26,9 +28,11 @@ function war() {}
 
 function gameOver() {
   if (playerScore > cpuScore) {
-    prompt("You win!");
+    gameEnd.textContent = "You win! 😁";
+    gameEnd.style.backgroundColor = "green";
   } else {
-    prompt("You lose!");
+    gameEnd.textContent = "You lose! ☹️";
+    gameEnd.style.backgroundColor = "red";
   }
 }
 
@@ -41,7 +45,10 @@ draw.addEventListener("click", () => {
   cardGenerator();
   cpuPlay.src = `imgs/${card}.svg`;
   cpuCard = cardNumber;
+  console.log(usedCards);
   if (usedCards.length === 52) {
+    gameEnd.removeAttribute("id");
+    table.setAttribute("id", "hidden");
     gameOver();
   }
   if (playerCard > cpuCard) {
