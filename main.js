@@ -48,6 +48,7 @@ function war() {
 
 function resetGame() {
   gameOn = true;
+  warOn = false;
   usedCards = [];
   gameEnd.setAttribute("id", "hidden");
   table.removeAttribute("id");
