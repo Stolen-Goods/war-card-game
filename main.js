@@ -1,5 +1,7 @@
 "use strict";
 
+let gameOn = true;
+let warOn = false;
 let playerCard;
 let cpuCard;
 let cardNumber;
@@ -26,22 +28,26 @@ function cardGenerator() {
   cardNumber = Math.trunc(Math.random() * 13) + 1;
   cardSuit = Math.trunc(Math.random() * 4) + 1;
   card = `${cardNumber}-${cardSuit}`;
-  !usedCards.includes(card) ? usedCards.push(card) : cardGenerator();
+  if (usedCards.length < 52) {
+    !usedCards.includes(card) ? usedCards.push(card) : cardGenerator();
+  } else {
+    gameOn = false;
+    gameEnd.removeAttribute("id");
+    table.setAttribute("id", "hidden");
+    gameOver();
+  }
 }
 
 function war() {
-  if (playerCard > cpuCard) {
-    playerScore += 10;
-    playerScr.textContent = `Score: ${playerScore}`;
-  } else if (cpuCard > playerCard) {
-    cpuScore += 10;
-    cpuScr.textContent = `Score: ${cpuScore}`;
-  } else if (playerCard === cpuCard) {
-    war();
+  if (gameOn === true) {
+    for (let i = 0; i < 6; i++) {
+      cardGenerator();
+    }
   }
 }
 
 function resetGame() {
+  gameOn = true;
   usedCards = [];
   gameEnd.setAttribute("id", "hidden");
   table.removeAttribute("id");
@@ -75,18 +81,28 @@ draw.addEventListener("click", () => {
   cpuPlay.classList.remove("hidden-cards");
   cpuPlay.src = `imgs/${card}.svg`;
   cpuCard = cardNumber;
-  if (usedCards.length === 52) {
-    gameEnd.removeAttribute("id");
-    table.setAttribute("id", "hidden");
-    gameOver();
-  }
-  if (playerCard > cpuCard) {
-    playerScore += 2;
-    playerScr.textContent = `Score: ${playerScore}`;
-  } else if (cpuCard > playerCard) {
-    cpuScore += 2;
-    cpuScr.textContent = `Score: ${cpuScore}`;
-  } else if (playerCard === cpuCard) {
-    war();
+  if (warOn === false) {
+    if (playerCard > cpuCard) {
+      playerScore += 2;
+      playerScr.textContent = `Score: ${playerScore}`;
+    } else if (cpuCard > playerCard) {
+      cpuScore += 2;
+      cpuScr.textContent = `Score: ${cpuScore}`;
+    } else {
+      war();
+      warOn = true;
+    }
+  } else {
+    warOn = false;
+    if (playerCard > cpuCard) {
+      playerScore += 10;
+      playerScr.textContent = `Score: ${playerScore}`;
+    } else if (cpuCard > playerCard) {
+      cpuScore += 10;
+      cpuScr.textContent = `Score: ${cpuScore}`;
+    } else {
+      war();
+      warOn = true;
+    }
   }
 });
